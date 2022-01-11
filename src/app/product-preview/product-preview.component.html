@@ -1,0 +1,27 @@
+<ngt-canvas [shadows]="true" [scene]="{ background: 'white' | color }">
+  <ngt-ambient-light [intensity]="0.5"></ngt-ambient-light>
+  <ngt-point-light
+    [intensity]="0.5"
+    [position]="[1, 1, 0]"
+  ></ngt-point-light>
+  <ngt-point-light
+    [intensity]="0.5"
+    [position]="[-1, 1, 0]"
+  ></ngt-point-light>
+  <ngt-point-light
+    [intensity]="0.5"
+    [position]="[1, -1, 0]"
+  ></ngt-point-light>
+  <ngt-primitive
+    *ngIf="cup$ | async as cup"
+    [object]="cup.scene"
+    (ready)="cupLoaded($event)"
+  >
+  </ngt-primitive>
+  <ngt-soba-orbit-controls
+    #controls="ngtSobaOrbitControls"
+    [target]="[0, 0.5, 0]"
+    (ready)="controlsReady(controls)"
+  ></ngt-soba-orbit-controls>
+</ngt-canvas>
+<ngt-soba-loader></ngt-soba-loader>
