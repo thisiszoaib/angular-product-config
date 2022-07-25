@@ -1,1 +1,16 @@
-
+<div class="h-screen w-screen p-8 bg-gray-100">
+    <div class="bg-white flex p-10 justify-center rounded-2xl shadow-xl">
+      <div class="w-1/2 border-r-2 pr-8">
+        <h2 class="text-xl font-bold">Coffee Mug - Custom Color</h2>
+        <p class="text-sm text-gray-400">Mug / 123</p>
+        <p class="my-5 text-gray-500 text-sm">With its clean lines and glossed glaze this ceramic mug is the perfect choice for displaying your brand. This type of gift is used frequently throughout the day and thus ensures maximum exposure.</p>
+        <h3 class="text-sm text-gray-400 tracking-widest">COLOR OPTIONS</h3>
+        <div class="flex gap-4 mt-4">
+            <button *ngFor="let color of colors" class="w-8 h-8 rounded-full shadow-xl border-2 border-white hover:opacity-50" [style.background]="color" (click)="selectedColor = color" [ngClass]="{ 'selected' : selectedColor === color }"></button>
+        </div>
+        
+        <button class="mt-8 w-full shadow-2xl p-4 text-gray-100 bg-black rounded-md">Add to cart</button>
+      </div>
+      <app-product-preview class="w-1/2 h-[300px]" [color]="selectedColor"></app-product-preview>
+    </div>
+  </div>
