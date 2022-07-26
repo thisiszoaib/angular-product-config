@@ -1,5 +1,9 @@
-import { NgtColorPipeModule, NgtCoreModule } from '@angular-three/core';
-import { NgtAmbientLightModule, NgtPointLightModule } from '@angular-three/core/lights';
+import { NgtCanvasModule } from '@angular-three/core';
+import { NgtColorAttributeModule } from '@angular-three/core/attributes';
+import {
+  NgtAmbientLightModule,
+  NgtPointLightModule,
+} from '@angular-three/core/lights';
 import { NgtPrimitiveModule } from '@angular-three/core/primitive';
 import { NgtSobaLoaderModule } from '@angular-three/soba/loaders';
 import { NgtSobaOrbitControlsModule } from '@angular-three/soba/controls';
@@ -11,21 +15,18 @@ import { AppComponent } from './app.component';
 import { ProductPreviewComponent } from './product-preview/product-preview.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductPreviewComponent
-  ],
+  declarations: [AppComponent, ProductPreviewComponent],
   imports: [
     BrowserModule,
-    NgtCoreModule,
+    NgtCanvasModule,
     NgtSobaLoaderModule,
     NgtPrimitiveModule,
     NgtSobaOrbitControlsModule,
     NgtAmbientLightModule,
     NgtPointLightModule,
-    NgtColorPipeModule
+    NgtColorAttributeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

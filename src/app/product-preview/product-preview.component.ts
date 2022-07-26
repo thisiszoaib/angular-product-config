@@ -1,16 +1,15 @@
 import { NgtSobaOrbitControls } from '@angular-three/soba/controls';
-import { NgtGLTFLoaderService } from '@angular-three/soba/loaders';
+import { NgtGLTFLoader } from '@angular-three/soba/loaders';
 import { Component, Input, OnInit } from '@angular/core';
 import { MeshStandardMaterial, Object3D, Mesh, PerspectiveCamera } from 'three';
 
 @Component({
   selector: 'app-product-preview',
   templateUrl: './product-preview.component.html',
-  styleUrls: ['./product-preview.component.scss']
+  styleUrls: ['./product-preview.component.scss'],
 })
 export class ProductPreviewComponent implements OnInit {
-  
-  @Input() 
+  @Input()
   set color(value: string) {
     this.#color = value;
     this.applyColorToMaterial(value);
@@ -20,25 +19,25 @@ export class ProductPreviewComponent implements OnInit {
 
   cupMaterial: MeshStandardMaterial | undefined;
 
-  constructor(private gltfLoaderService: NgtGLTFLoaderService) {}
+  constructor(private gltfLoaderService: NgtGLTFLoader) {}
 
   cup$ = this.gltfLoaderService.load('assets/cup.glb');
 
   cupLoaded(object: Object3D) {
-    this.cupMaterial = <MeshStandardMaterial>(<Mesh>object.getObjectByName('Object_2')).material;
+    this.cupMaterial = <MeshStandardMaterial>(
+      (<Mesh>object.getObjectByName('Object_2')).material
+    );
     this.applyColorToMaterial(this.#color);
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   controlsReady(controls: NgtSobaOrbitControls) {
-    const orbitControls = controls.controls;
+    const orbitControls = controls;
     orbitControls.enableZoom = false;
     orbitControls.autoRotate = true;
     orbitControls.autoRotateSpeed = 10;
-    const camera = orbitControls.object as PerspectiveCamera;
+    const camera = orbitControls.camera as PerspectiveCamera;
     camera.zoom = 4.5;
     camera.position.setY(4);
   }
@@ -48,5 +47,4 @@ export class ProductPreviewComponent implements OnInit {
       this.cupMaterial.color.setHex(parseInt(color.substring(1), 16));
     }
   }
-
 }
