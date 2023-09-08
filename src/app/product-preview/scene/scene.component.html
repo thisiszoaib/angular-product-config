@@ -1,0 +1,19 @@
+<ngt-ambient-light [intensity]="Math.PI / 2" />
+<ngt-point-light [intensity]="0.5" [position]="[1, 1, 0]" />
+<ngt-point-light [intensity]="0.5" [position]="[-1, 1, 0]" />
+<ngt-point-light [intensity]="0.5" [position]="[1, -1, 0]" />
+
+<ngt-primitive *args="[cup()]" [position]="[0, -0.5, 0]" />
+
+<ngts-orbit-controls
+  [enableZoom]="false"
+  [target]="[0, 0.5, 0]"
+  [autoRotate]="true"
+  [autoRotateSpeed]="5"
+  [maxPolarAngle]="Math.PI / 2"
+>
+  <ngt-vector3 *args="[4, 4, 4]" attach="object.position" />
+  <ngt-value [rawValue]="4.5" attach="object.zoom" />
+</ngts-orbit-controls>
+
+<ngts-contact-shadows [position]="[0, -0.45, 0]" [scale]="10" [blur]="3" />
